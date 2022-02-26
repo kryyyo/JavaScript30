@@ -42,7 +42,22 @@
 
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div')
 
+  function logText(e) {
+    e.stopPropagation();
+    //stop bubbling this event up (only the first capture)
+
+    console.log(this.classList.value);
+  }
+
+  divs.forEach(div => div.addEventListener('click', logText, {
+    capture: false,
+    once: true    //unbinding or removing listener after 1 trigger
+    //unbinding for clicking multiple times 
+  }));
+
+  //capture: true, capturing is now from parent to child. default is false where capturing is from child to parent 
 </script>
 </body>
 </html>
